@@ -1,33 +1,15 @@
 (ns tutorial2.core
+  (:require [tutorial2.utils :as utils])
+  (:require [tutorial2.router :as router])
   (:require [clojure.tools.cli :refer [cli]])
   (:require [clojure.java.io :as io])
+  (:require [compojure.core :as compojure]
+            [ring.adapter.jetty :as jetty]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
   (:gen-class))
 
-(defn write-file [s]
-  (with-open [w (io/writer  "./out.txt" :append true)]
-    (.write w s)
-    (.close w)))
-
-(defn read-file []
-  (with-open [r (io/reader "./out.txt")]
-    (doseq [line (line-seq r)]
-      (println line))
-    (.close r)))
+(def wrapped-app (-> router/myroute
+                     (wrap-defaults site-defaults)))
 
 (defn -main [& [args]]
-  (if args (write-file args))
-  (read-file))
-
-;(defn -main [& args]
-;  (let [[opts args banner] (cli args
-;                                ["-h" "--help" "Print this help"
-;                                 :default false :flag true]
-;                                )]
-;    (when (:help opts)
-;      (println banner)))
-;  (if args (println args)
-;             ;if (= (get args 0) "write") ((println "hello"))
-;             
-;    )
-;  )
-
+  (jetty/run-jetty #'wrapped-app {:join? false :port (utils/parse-int args)}))
