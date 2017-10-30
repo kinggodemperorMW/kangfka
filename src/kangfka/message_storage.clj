@@ -21,6 +21,11 @@
     (.write wrtr message)
     (.close wrtr)))
 
-(defn read-messages [topic])
+(defn read-messages [topic]
+  (let [topic-folder-path (str (get-topic-folder-path topic) "/")
+        topic-files (file-seq (io/as-file topic-folder-path))]
+    (println (first topic-files)))) ;TODO(minwoo) 파일 읽기 추가해야 함
 
 (put "hi" "kkk")
+
+(read-messages "hi")
