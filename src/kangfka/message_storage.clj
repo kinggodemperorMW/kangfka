@@ -1,26 +1,26 @@
 (ns kangfka.core
   (:use [clojure.java.io :as io]))
 
-;topic 에 새로운 메시지를 추가함 TODO
-(defn put [topic message]
-  (println topic))
+(defn get-topic-folder-path
+  [topic]
+  (let [folder-path (str (System/getProperty "user.dir") "/local-file/" topic ".kangfka")]
+    (println (str "[topic] " topic " => " folder-path))
+    folder-path))
 
-;topic 에서 메시지를 읽음 TODO
+(defn create-topic-folder
+  [topic]
+  (let [topic-folder-path (get-topic-folder-path topic)
+        topic-folder (io/file topic-folder-path)]
+    (if (.exists (io/file topic-folder))
+      (println (str topic-folder-path " already exists."))
+      (.mkdirs topic-folder))))
+
+(defn put [topic message]
+  (create-topic-folder topic)
+  (let [wrtr (io/writer (str (get-topic-folder-path topic) "/0") :append true)]
+    (.write wrtr message)
+    (.close wrtr)))
+
 (defn read-messages [topic])
 
-;topic 파일 경로를 만듬
-(defn get-topic-file-path
-  [topic]
-  (let [file-path (str (System/getProperty "user.dir") "/local-file/" topic ".kangfka")]
-    (println (str "[topic] " topic " => " file-path))
-    file-path))
-
-;topic 파일이 없으면 생성함 TODO
-(defn create-topic-file
-  [topic]
-  (let [topic-file-path (get-topic-file-path topic)]
-    (if (.exists (io/file topic-file-path))
-      (println (str topic-file-path " already exists."))
-      (println (str topic-file-path " does not exist.")))))
-
-(create-topic-file "hi")
+(put "hi" "kkk")
