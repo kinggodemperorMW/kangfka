@@ -22,9 +22,9 @@
     (.close wrtr)))
 
 (defn read-messages [topic]
-  (let [topic-folder-path (str (get-topic-folder-path topic) "/")
-        topic-files (file-seq (io/as-file topic-folder-path))]
-    (println (first topic-files)))) ;TODO(minwoo) 파일 읽기 추가해야 함
+  (println (reader (map #(.getAbsolutePath %) (filter #(.isFile %) (file-seq (io/as-file (str (get-topic-folder-path topic) "/"))))))))
+  ;CompilerException java.lang.IllegalArgumentException: Cannot open <("/Users/naver/dev/github/kangfka/local-file/hi.kangfka/0")> as an InputStream.
+  ;코드가 뭔가 이상하다;;
 
 (put "hi" "kkk")
 
