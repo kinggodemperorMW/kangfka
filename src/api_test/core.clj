@@ -1,6 +1,6 @@
 (ns api-test.core
-  (use [ring.util.response])
-  (require [ring.adapter.jetty :as ring]
+  (:use [ring.util.response])
+  (:require [ring.adapter.jetty :as ring]
            [ring.middleware.json :as middleware]
            [compojure.core :refer :all]
            [compojure.route :as route]
