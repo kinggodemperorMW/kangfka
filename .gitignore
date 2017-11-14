@@ -9,3 +9,4 @@ target
 checkouts
 .lein-repl-history
 .nrepl-port
+.idea

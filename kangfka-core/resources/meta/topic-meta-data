@@ -1,0 +1,1 @@
+{"testTopic1":{"path":"testPath","name":"testTopic1"},"testTopic3":{"name":"testTopic3","path":"resources\/topic\/testTopic3"},"testTopic":{"name":"testTopic","path":"resources\/topic\/testTopic"},"testTopicNotExist":{"name":"testTopicNotExist","path":"resources\/topic\/testTopicNotExist"}}

@@ -1,4 +1,4 @@
-(ns kangfka-core.conf.conf
-    (:require [clojure.java.io :as io]))
+(ns kangfka_core.conf.conf)
 
-(def data-file (io/resource "data.txt"))
+(def topic-meta-data-path "resources/meta/topic-meta-data")
+(def root-topic-path "resources/topic/")

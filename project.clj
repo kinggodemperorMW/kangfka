@@ -8,7 +8,7 @@
                  [kangfka/kangfka-web "0.1.0-SNAPSHOT"]]
   :plugins [[lein-sub "0.2.4"]
             [lein-ring "0.12.1"]]
-  :sub ["kangfka-core"
+  :sub ["kangfka_core"
         "kangfka-web"]
   :ring {:handler kangfka-web.core/app :port 3000}
   :main kangfka-web.core)
