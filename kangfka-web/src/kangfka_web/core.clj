@@ -9,13 +9,11 @@
 
 (defroutes app-routes
   (GET "/" [] "kangfka")
+  (POST "/admin" {body :body}
+    (let [action (get body "action"))]
+      (response action))
   (GET "/messages/:topic" [topic]
     "message")
-  ; (POST "/message" {body :body}
-  ;   (let [message (message/wrap-message (get body "topic") (get body "message"))
-  ;         res (assoc body "timestamp" (:timestamp message))]
-  ;     (writer/write ((:to-string message)) (utils/data-file (:topic message)))
-  ;     (response res)))
   (route/not-found "404"))
 
 (def app
