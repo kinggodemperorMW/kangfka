@@ -1,5 +1,5 @@
 (ns kangfka-core.conf.conf
     (:require [clojure.java.io :as io]))
 
-(def topic-meta-data-path "resources/meta/topic-meta-data")
-(def root-topic-path "resources/topic/")
+(def root-topic-path "/root/")
+(def node "host_name")
