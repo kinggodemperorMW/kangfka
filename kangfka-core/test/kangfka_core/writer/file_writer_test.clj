@@ -1,7 +1,14 @@
-(ns file_writer_test
+(ns kangfka-core.writer.file_writer_test
     (require [clojure.test :refer :all]
              [kangfka-core.writer.file-writer :refer :all]))
 
-(deftest a-test
-         (testing "FIXME, I fail."
-                  (is (= 0 1))))
+
+
+(defn testfoo [{:keys [aaa] :or {aaa 10}}]
+    aaa)
+
+(deftest foo-test
+    (is (= (testfoo {}) 10)))
+    
+(deftest get-topic-path-test
+    (is (= (get-topic-path "name" 0) "/root/name/0")))

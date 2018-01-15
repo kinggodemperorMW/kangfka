@@ -1,4 +1,4 @@
-(ns writer_zookeeper
+(ns kangfka-core.writer.writer_zookeeper
   (require [kangfka-core.conf.conf :as conf]))
 
 (defn create_key [topic partition]
