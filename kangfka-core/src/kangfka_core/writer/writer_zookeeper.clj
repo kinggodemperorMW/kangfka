@@ -1,32 +1,31 @@
 (ns writer_zookeeper
-    (require [kangfka-core.conf.conf :as conf]))
+  (require [kangfka-core.conf.conf :as conf]))
 
 (defn create_key [topic partition]
-      [topic partition])
+  [topic partition])
 
 (defn cache {})
 
-(defn put [node topic partition node address]
-      (let key (create_key topic partition)
-               (assoc cache key {:node node :address address})))
+(defn put [node topic partition node address port]
+  (let [key (create_key topic partition)]
+           (assoc cache key {:node node :address address :port port})))
 
 (defn has_node [topic partition]
-      (let node (get cache (create_key topic partition))
-           (if nil? node false true)))
+  (let [node (get cache (create_key topic partition))]
+            (if nil? node false true)))
 
 (defn get_node_from_zookeper [topic partition]
-      ; TODO ask it from zookeper and put node info to cache
-      {:node "" :address ""})
+  ; TODO ask it from zookeper and put node info to cache
+  {:node "" :address "" :port ""})
 
 (defn is_i [{:keys node}]
   (= node conf/node))
 
-(def get_owner_node [topic partition]
+(defn get_owner_node [topic partition]
   (if has_node [topic partition]
-               (def node (get cache (create_key topic partition)))
-               (def node (get_node_from_zookeper topic partition)))
-  node)
+               (get cache (create_key topic partition))
+               (get_node_from_zookeper topic partition)))
 
-(def is_my_topic [topic partition]
-  (let node (get_owner_node topic partition)
+(defn is_my_topic [topic partition]
+  (let [node (get_owner_node topic partition)]
             (is_i node)))
