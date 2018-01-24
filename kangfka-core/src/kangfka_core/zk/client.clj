@@ -22,8 +22,8 @@
 
 (defn make-dir [client path]
   (let [version (get-dir-version client path)]
-  (if (nil? version)
-    (zk/create client path))))
+   (if (nil? version)
+     (zk/create client path))))
 
 (defn add-node [client node-list]
   (doseq [node node-list]
@@ -36,5 +36,7 @@
 (defn add-topic [client topic-list]
   (doseq [topic topic-list]
     (do
-      (let [version (:version (zk/exists client "/topics"))]
-        (zk/set-data client "/topics" (.getBytes topic "UTF-8") version)))))
+      (let [topic-name (:name topic)
+            topic-dir-name (str "/topics/" topic-name)]
+        (make-dir client topic-dir-name)
+        (zk/set-data client topic-dir-name (data/to-bytes (json/write-str topic)) (get-dir-version client topic-dir-name))))))

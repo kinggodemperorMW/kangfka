@@ -39,5 +39,9 @@
 
     (init client)
 
-    (add-topic client ["topic1"])
-    (is (= "topic1" (String. (:data (data client "/topics")))))))
+    (def topic1 (struct topic "a" 50))
+    (def topic2 (struct topic "b" 1))
+
+    (add-topic client [topic1 topic2])
+
+    (is (= (json/write-str topic1) (String. (:data (data client "/topics/a")))))))
