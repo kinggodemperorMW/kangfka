@@ -1,11 +1,11 @@
 (ns kangfka-core.writer.file-writer
-    (require [clojure.string :refer :all]
+    (require [clojure.string :refer [blank?]]
              [kangfka-core.conf.conf :as conf]))
 
 (defn get-topic-path
   ([topic partition] (get-topic-path topic partition conf/root-topic-path))
   ([topic partition root-path]
-      (str root-path "/" topic "/" partition)))
+   (str root-path "/" topic "/" partition)))
 
 (defn write [topic partition message]
   (if (some blank? [topic partition message])

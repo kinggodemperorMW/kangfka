@@ -1,0 +1,33 @@
+REPL Instructions
+
+Code can be entered at the bottom and executed by pressing shift+enter.
+
+Try it now by typing (+ 1 1) in the bottom section and pressing shift+enter.
+
+Working in another Clojure file and sending forms to the REPL is the most efficient way to work. Use the following key bindings to send code to the REPL. See the settings for more keybindings.
+
+ctrl-alt-, then b
+Execute block. Finds the block of Clojure code your cursor is in and executes that.
+
+ctrl-alt-, s
+Executes the selection. Sends the selected text to the REPL.
+
+You can disable this help text in the settings.
+Atom Ink does not appear to be installed. Install it to get a better REPL experience.
+Starting REPL with lein in /Users/beomseok.kim/ccw-settings/tutorial2
+Could not find artifact kangfka:kangfka-core:jar:0.1.0-SNAPSHOT in clojars (https://clojars.org/repo/)
+Could not find artifact kangfka:kangfka-web:jar:0.1.0-SNAPSHOT in clojars (https://clojars.org/repo/)
+This could be due to a typo in :dependencies or network issues.
+If you are behind a proxy, try setting the 'http_proxy' environment variable.
+REPL Closed
+This command requires you to position the cursor on a Clojure var.
+This command requires you to position the cursor on a Clojure var.
+Starting REPL with lein in /Users/beomseok.kim/ccw-settings/tutorial2
+Could not find artifact kangfka:kangfka-core:jar:0.1.0-SNAPSHOT in clojars (https://clojars.org/repo/)
+Could not find artifact kangfka:kangfka-web:jar:0.1.0-SNAPSHOT in clojars (https://clojars.org/repo/)
+This could be due to a typo in :dependencies or network issues.
+If you are behind a proxy, try setting the 'http_proxy' environment variable.
+REPL Closed
+--------------------
+
+(+ 1 1)
